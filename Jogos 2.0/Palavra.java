@@ -18,8 +18,8 @@ public class Palavra {
 
     public void checaResposta() {
         if (resposta.equals(palavraEscolhida)) {
-            System.out.println("Você acertou!");
-            System.out.println("Você ganhou 1 ponto!");
+            System.out.println("\nVocê acertou!");
+            System.out.println("Você ganhou 1 ponto!\n");
             Main.pontuacao.atualizaPontos();
         } else {
             System.out.println("Seu horrível!");
