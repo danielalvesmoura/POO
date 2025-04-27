@@ -19,9 +19,12 @@ public class Palavra {
     public void checaResposta() {
         if (resposta.equals(palavraEscolhida)) {
             System.out.println("Você acertou!");
+            System.out.println("Você ganhou 1 ponto!");
+            Main.pontuacao.atualizaPontos();
         } else {
             System.out.println("Seu horrível!");
         }
+        System.out.printf("\nSua pontuação atual é %d ponto(s)", Main.pontuacao.pontos);
     }
 
 }
