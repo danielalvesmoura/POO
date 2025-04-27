@@ -16,4 +16,12 @@ public class Palavra {
         return palavraEscolhida;
     }
 
+    public void checaResposta() {
+        if (resposta.equals(palavraEscolhida)) {
+            System.out.println("Você acertou!");
+        } else {
+            System.out.println("Seu horrível!");
+        }
+    }
+
 }
