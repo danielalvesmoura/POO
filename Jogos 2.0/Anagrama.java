@@ -1,20 +1,19 @@
 public class Anagrama {
-
     Global global = new Global();
-
+    String palavraEmbaralhada;
 
     public void jogo() {
-        String palavraEmbaralhada = embaralhaPalavra(Main.palavra.palavraEscolhida);
+        Main.palavra.palavraEscolhida = Main.palavra.sorteiaPalavra(Main.palavra.vetorPalavras);
+
+        palavraEmbaralhada = embaralhaPalavra(Main.palavra.palavraEscolhida);
 
         System.out.println(palavraEmbaralhada);
 
-        Main.palavra.resposta = global.scanner.nextLine();
-
-        Main.palavra.checaResposta();
+        Main.palavra.tentativa();
 
     }
 
-    public String embaralhaPalavra(String palavra) {
+    private String embaralhaPalavra(String palavra) {
         char[] palavraArray = palavra.toCharArray();
 
         for (int i = 0; i < palavraArray.length; i++) {
