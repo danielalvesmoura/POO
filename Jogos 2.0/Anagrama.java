@@ -10,6 +10,8 @@ public class Anagrama {
 
         Main.palavra.resposta = global.scanner.nextLine();
 
+        Main.palavra.checaResposta();
+
     }
 
     public String embaralhaPalavra(String palavra) {
