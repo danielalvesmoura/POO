@@ -16,15 +16,32 @@ public class Palavra {
         return palavraEscolhida;
     }
 
-    public void checaResposta() {
+    public void tentativa() {
+        Boolean acertou = false;
+        while (!acertou) {
+
+            resposta = global.scanner.nextLine();
+
+            acertou = checaResposta();
+        }
+    }
+
+    public Boolean checaResposta() {
         if (resposta.equals(palavraEscolhida)) {
             System.out.println("\nVocê acertou!");
             System.out.println("Você ganhou 1 ponto!\n");
             Main.pontuacao.atualizaPontos();
+            System.out.printf("Sua pontuação atual é %d ponto(s)\n", Main.pontuacao.pontos);
+            return true;
+        } else if (resposta.equals("dica")) {
+            Main.dica.dica();
+            return false;
+        } else if (resposta.equals("desisto")) {
+            return true;
         } else {
-            System.out.println("Seu horrível!");
+            System.out.println("Seu horrível! Tente novamente:\n");
+            return false;
         }
-        System.out.printf("\nSua pontuação atual é %d ponto(s)", Main.pontuacao.pontos);
     }
 
 }
