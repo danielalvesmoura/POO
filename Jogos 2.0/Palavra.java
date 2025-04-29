@@ -44,4 +44,19 @@ public class Palavra {
         }
     }
 
+    public void setDificuldade(int dificuldade) {
+        this.dificuldade = dificuldade;
+    }
+
+    public void setPalavraEscolhida(String palavraEscolhida) {
+        this.palavraEscolhida = palavraEscolhida;
+    }
+
+    public String getPalavraEscolhida() {
+        return palavraEscolhida;
+    }
+
+    public int getDificuldade() {
+        return dificuldade;
+    }
 }
