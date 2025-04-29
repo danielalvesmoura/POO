@@ -5,7 +5,7 @@ public class Anagrama {
     public void jogo() {
         Main.palavra.palavraEscolhida = Main.palavra.sorteiaPalavra(Main.palavra.vetorPalavras);
 
-        palavraEmbaralhada = embaralhaPalavra(Main.palavra.palavraEscolhida);
+        palavraEmbaralhada = embaralhaPalavra(Main.palavra.getPalavraEscolhida());
 
         System.out.println(palavraEmbaralhada);
 
