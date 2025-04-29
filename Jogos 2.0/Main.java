@@ -38,7 +38,7 @@ public class Main {
 
         System.out.println("Digite a quantidade desejada de letras [4-6]:");
 
-        Main.palavra.dificuldade = global.scanner.nextInt();
+        palavra.setDificuldade(global.scanner.nextInt());
 
     }
 
