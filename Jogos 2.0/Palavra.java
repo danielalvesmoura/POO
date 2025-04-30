@@ -4,12 +4,12 @@ public class Palavra {
 
     Global global = new Global();
 
-    int dificuldade = 4;
-    String[] vetorPalavras = {"salve","casa","faca","gato","trilho"};
-    String[] palavrasEscolhidas = new String[2];
-    String resposta;
-    Boolean[] palavrasAcertadas = {false,false};
-    int acertouQuantas = 0;
+    public int dificuldade = 4;
+    public String[] vetorPalavras = {"salve","casa","faca","gato","trilho"};
+    public String[] palavrasEscolhidas = new String[2];
+    public String resposta;
+    public Boolean[] palavrasAcertadas = {false,false};
+    public int acertouQuantas = 0;
 
     public void palavraReset() {
         acertouQuantas = 0;
@@ -26,9 +26,6 @@ public class Palavra {
             }
         }
     }
-
-
-
 
 
     public void setDificuldade(int dificuldade) {
