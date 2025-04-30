@@ -2,34 +2,36 @@ import java.util.Scanner;
 
 public class Main {
 
-    private static Global global = new Global();
-    public static Palavra palavra = new Palavra();
-    public static Pontuacao pontuacao = new Pontuacao();
-    public static Dica dica = new Dica();
+    private Global global = new Global();
+    public Palavra palavra = new Palavra();
+    public Pontuacao pontuacao = new Pontuacao();
+    public Dica dica = new Dica();
 
-    private static Boolean jogando = true;
+    private Boolean jogando = true;
 
     public static void main(String[] args) {
 
-        while(jogando) {
-            acao();
+        Main main = new Main();
+
+        while(main.jogando) {
+            main.acao();
         }
 
     }
 
-    private static void acao() {
+    private void acao() {
         System.out.println("\n[1] Anagrama, [2] Caça Palavras, [3] Mudar Dificuldade, [4] Parar");
         global.scanner = new Scanner(System.in);
         int respostaAcao = global.scanner.nextInt();
 
         if (respostaAcao == 1) {
             Anagrama anagrama = new Anagrama();
-            anagrama.jogo();
+            anagrama.jogo(palavra, pontuacao, dica);
         }  else if (respostaAcao == 2) {
             CacaPalavras cacaPalavras = new CacaPalavras();
-            cacaPalavras.jogo();
+            cacaPalavras.jogo(palavra, pontuacao, dica);
         }  else if (respostaAcao == 3) {
-            mudarDificuldade();
+            mudarDificuldade(palavra);
         } else if (respostaAcao == 4) {
             jogando = false;
         }
@@ -37,7 +39,7 @@ public class Main {
 
     }
 
-    private static void mudarDificuldade() {
+    private void mudarDificuldade(Palavra palavra) {
 
         System.out.println("Digite a quantidade desejada de letras [4-6]:");
 
