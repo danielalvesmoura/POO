@@ -23,37 +23,48 @@ public class Tabuleiro {
         return tabuleiroTemporario;
     };
 
-    public char[][] ocultarPalavraTabuleiro(char[][] tabuleiro, String escolhida, int posicaoXPalavra, int posicaoYPalavra, int orientacaoPalavra) {
-        char escolhidaArray[] = escolhida.toCharArray();
-        if (orientacaoPalavra == 0) {
-            for (int i = 0; i < escolhida.length(); i++) {
-                tabuleiro[posicaoYPalavra][posicaoXPalavra+i] = escolhidaArray[i];
-            }
-        } else {
-            for (int i = 0; i < escolhida.length(); i++) {
-                tabuleiro[posicaoYPalavra+i][posicaoXPalavra] = escolhidaArray[i];
+    public char[][] ocultarPalavraTabuleiro(char[][] tabuleiro, String[] escolhida, int[] posicaoXPalavra, int[] posicaoYPalavra, int orientacaoPalavra) {
+        for (int iPalavra = 0; iPalavra < escolhida.length; iPalavra++) {
+            char escolhidaArray[] = escolhida[iPalavra].toCharArray();
+            if (orientacaoPalavra == 0) {
+                for (int i = 0; i < escolhida[iPalavra].length(); i++) {
+                    tabuleiro[posicaoYPalavra[iPalavra]][posicaoXPalavra[iPalavra]+i] = escolhidaArray[i];
+                }
+            } else {
+                for (int i = 0; i < escolhida[iPalavra].length(); i++) {
+                    tabuleiro[posicaoYPalavra[iPalavra]+i][posicaoXPalavra[iPalavra]] = escolhidaArray[i];
+                }
             }
         }
+
         return tabuleiro;
     }
 
-    public int geraPosicaoXPalavra(int tamanhoTabuleiro, String escolhida, int orientacaoPalavra) {
-        int posicaoXPalavra = global.inteiroAleatorio(0, tamanhoTabuleiro-1);
-        if (orientacaoPalavra == 0) {
-            while (posicaoXPalavra + escolhida.length() > tamanhoTabuleiro) {
-                posicaoXPalavra = global.inteiroAleatorio(0, escolhida.length());
+    public int[] geraPosicaoXPalavras(int tamanhoTabuleiro, String[] escolhida, int orientacaoPalavra) {
+        int[] posicaoXPalavras = new int[2];
+        for (int iPalavra = 0; iPalavra < escolhida.length; iPalavra++) {
+            posicaoXPalavras[iPalavra] = global.inteiroAleatorio(0, tamanhoTabuleiro-1);
+            if (orientacaoPalavra == 1) {
+                while (posicaoXPalavras[iPalavra] + escolhida[iPalavra].length() > tamanhoTabuleiro) {
+                    posicaoXPalavras[iPalavra] = global.inteiroAleatorio(0, escolhida[iPalavra].length());
+                }
             }
         }
-        return posicaoXPalavra;
+
+        return posicaoXPalavras;
     }
 
-    public int geraPosicaoYPalavra(int tamanhoTabuleiro, String escolhida, int orientacaoPalavra) {
-        int posicaoYPalavra = global.inteiroAleatorio(0, tamanhoTabuleiro-1);
-        if (orientacaoPalavra == 1) {
-            while (posicaoYPalavra + escolhida.length() > tamanhoTabuleiro) {
-                posicaoYPalavra = global.inteiroAleatorio(0, escolhida.length());
+    public int[] geraPosicaoYPalavras(int tamanhoTabuleiro, String[] escolhida, int orientacaoPalavra) {
+        int[] posicaoYPalavras = new int[2];
+        for (int iPalavra = 0; iPalavra < escolhida.length; iPalavra++) {
+            posicaoYPalavras[iPalavra] = global.inteiroAleatorio(0, tamanhoTabuleiro-1);
+            if (orientacaoPalavra == 1) {
+                while (posicaoYPalavras[iPalavra] + escolhida[iPalavra].length() > tamanhoTabuleiro) {
+                    posicaoYPalavras[iPalavra] = global.inteiroAleatorio(0, escolhida[iPalavra].length());
+                }
             }
         }
-        return posicaoYPalavra;
+
+        return posicaoYPalavras;
     }
 }
