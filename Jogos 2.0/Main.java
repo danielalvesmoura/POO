@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Main {
 
     private static Global global = new Global();
@@ -17,6 +19,7 @@ public class Main {
 
     private static void acao() {
         System.out.println("\n[1] Anagrama, [2] Caça Palavras, [3] Mudar Dificuldade, [4] Parar");
+        global.scanner = new Scanner(System.in);
         int respostaAcao = global.scanner.nextInt();
 
         if (respostaAcao == 1) {
@@ -38,6 +41,7 @@ public class Main {
 
         System.out.println("Digite a quantidade desejada de letras [4-6]:");
 
+        global.scanner = new Scanner(System.in);
         palavra.setDificuldade(global.scanner.nextInt());
 
     }
