@@ -26,6 +26,7 @@ public class Tabuleiro {
     public char[][] ocultarPalavraTabuleiro(char[][] tabuleiro, String[] escolhida, int[] posicaoXPalavra, int[] posicaoYPalavra, int orientacaoPalavra) {
         for (int iPalavra = 0; iPalavra < escolhida.length; iPalavra++) {
             char escolhidaArray[] = escolhida[iPalavra].toCharArray();
+
             if (orientacaoPalavra == 0) {
                 for (int i = 0; i < escolhida[iPalavra].length(); i++) {
                     tabuleiro[posicaoYPalavra[iPalavra]][posicaoXPalavra[iPalavra]+i] = escolhidaArray[i];
@@ -43,8 +44,9 @@ public class Tabuleiro {
     public int[] geraPosicaoXPalavras(int tamanhoTabuleiro, String[] escolhida, int orientacaoPalavra) {
         int[] posicaoXPalavras = new int[2];
         for (int iPalavra = 0; iPalavra < escolhida.length; iPalavra++) {
-            posicaoXPalavras[iPalavra] = global.inteiroAleatorio(0, tamanhoTabuleiro-1);
-            if (orientacaoPalavra == 1) {
+            posicaoXPalavras[iPalavra] = global.inteiroAleatorio(0, tamanhoTabuleiro);
+
+            if (orientacaoPalavra == 0) {
                 while (posicaoXPalavras[iPalavra] + escolhida[iPalavra].length() > tamanhoTabuleiro) {
                     posicaoXPalavras[iPalavra] = global.inteiroAleatorio(0, escolhida[iPalavra].length());
                 }
@@ -57,7 +59,8 @@ public class Tabuleiro {
     public int[] geraPosicaoYPalavras(int tamanhoTabuleiro, String[] escolhida, int orientacaoPalavra) {
         int[] posicaoYPalavras = new int[2];
         for (int iPalavra = 0; iPalavra < escolhida.length; iPalavra++) {
-            posicaoYPalavras[iPalavra] = global.inteiroAleatorio(0, tamanhoTabuleiro-1);
+            posicaoYPalavras[iPalavra] = global.inteiroAleatorio(0, tamanhoTabuleiro);
+
             if (orientacaoPalavra == 1) {
                 while (posicaoYPalavras[iPalavra] + escolhida[iPalavra].length() > tamanhoTabuleiro) {
                     posicaoYPalavras[iPalavra] = global.inteiroAleatorio(0, escolhida[iPalavra].length());
