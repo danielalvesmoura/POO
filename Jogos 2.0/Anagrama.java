@@ -4,17 +4,17 @@ public class Anagrama {
     Global global = new Global();
     String[] palavrasEmbaralhadas;
 
-    public void jogo() {
-        Main.palavra.sorteiaPalavra(Main.palavra.vetorPalavras);
+    public void jogo(Palavra palavra, Pontuacao pontuacao, Dica dica) {
+        palavra.sorteiaPalavra(palavra.vetorPalavras);
 
-        palavrasEmbaralhadas = embaralhaPalavras(Main.palavra.palavrasEscolhidas);
+        palavrasEmbaralhadas = embaralhaPalavras(palavra.palavrasEscolhidas);
 
         System.out.println(palavrasEmbaralhadas[0]);
         System.out.println(palavrasEmbaralhadas[1]);
 
-        Main.palavra.palavraReset();
+        palavra.palavraReset();
 
-        tentativa();
+        tentativa(palavra, pontuacao, dica);
 
     }
 
@@ -38,35 +38,35 @@ public class Anagrama {
         return novasPalavras;
     }
 
-    private void tentativa() {
-        while (Main.palavra.acertouQuantas != 2) {
+    private void tentativa(Palavra palavra, Pontuacao pontuacao, Dica dica) {
+        while (palavra.acertouQuantas != 2) {
             System.out.println("Qual deseja acertar? [1] primeira ou [2] segunda");
             int qualPalavra = global.scanner.nextInt();
 
-            while (Main.palavra.palavrasAcertadas[qualPalavra-1] == false) {
+            while (palavra.palavrasAcertadas[qualPalavra-1] == false) {
 
                 global.scanner = new Scanner(System.in);
-                Main.palavra.resposta = global.scanner.nextLine();
+                palavra.resposta = global.scanner.nextLine();
 
-                Main.palavra.palavrasAcertadas[qualPalavra-1] = checaResposta(qualPalavra);
+                palavra.palavrasAcertadas[qualPalavra-1] = checaResposta(qualPalavra, pontuacao, palavra, dica);
             }
         }
     }
 
-    private Boolean checaResposta(int qualPalavra) {
-        if (Main.palavra.resposta.equals(Main.palavra.palavrasEscolhidas[qualPalavra-1])) {
-            Main.palavra.acertouQuantas++;
+    private Boolean checaResposta(int qualPalavra, Pontuacao pontuacao, Palavra palavra, Dica dica) {
+        if (palavra.resposta.equals(palavra.palavrasEscolhidas[qualPalavra-1])) {
+            palavra.acertouQuantas++;
             System.out.println("\nVocê acertou!");
             System.out.println("Você ganhou 1 ponto!\n");
-            Main.pontuacao.atualizaPontos();
-            System.out.printf("Sua pontuação atual é %d ponto(s)\n", Main.pontuacao.pontos);
+            pontuacao.atualizaPontos();
+            System.out.printf("Sua pontuação atual é %d ponto(s)\n", pontuacao.pontos);
             return true;
-        } else if (Main.palavra.resposta.equals("dica")) {
+        } else if (palavra.resposta.equals("dica")) {
             System.out.println("De qual palavra deseja dica? [1] primeira ou [2] segunda");
             int qualPalavraDica = global.scanner.nextInt();
-            Main.dica.dica(qualPalavraDica);
+            dica.dica(qualPalavraDica, palavra);
             return false;
-        } else if (Main.palavra.resposta.equals("desisto")) {
+        } else if (palavra.resposta.equals("desisto")) {
             return true;
         } else {
             System.out.println("Seu horrível! Tente novamente:\n");
