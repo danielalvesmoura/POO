@@ -19,8 +19,8 @@ public class Anagrama {
 
         palavrasEmbaralhadas = embaralhaPalavras(palavra.palavrasEscolhidas);
 
-        System.out.println(palavrasEmbaralhadas[0]);
-        System.out.println(palavrasEmbaralhadas[1]);
+        System.out.printf("Palavra 1: %s\n", palavrasEmbaralhadas[0]);
+        System.out.printf("Palavra 2: %s\n", palavrasEmbaralhadas[1]);
 
         palavra.palavraReset();
 
@@ -50,16 +50,24 @@ public class Anagrama {
 
     private void tentativa() {
         while (palavra.acertouQuantas != 2) {
-            System.out.println("Qual deseja acertar? [1] primeira ou [2] segunda");
+            System.out.println("Qual deseja acertar? [1] primeira, [2] segunda ou [3] dica");
             int qualPalavra = global.scanner.nextInt();
 
-            while (palavra.palavrasAcertadas[qualPalavra-1] == false) {
+            if(qualPalavra == 3) {
+                System.out.println("De qual palavra deseja dica? [1] primeira ou [2] segunda");
+                int qualPalavraDica = global.scanner.nextInt();
+                palavra.dica(qualPalavraDica, palavra);
+            } else {
+                while (palavra.palavrasAcertadas[qualPalavra-1] == false) {
 
-                global.scanner = new Scanner(System.in);
-                palavra.resposta = global.scanner.nextLine();
+                    System.out.println("Digite a resposta: ");
+                    global.scanner = new Scanner(System.in);
+                    palavra.resposta = global.scanner.nextLine();
 
-                palavra.palavrasAcertadas[qualPalavra-1] = checaResposta(qualPalavra);
+                    palavra.palavrasAcertadas[qualPalavra-1] = checaResposta(qualPalavra);
+                }
             }
+
         }
     }
 
@@ -75,13 +83,6 @@ public class Anagrama {
             System.out.printf("Sua pontuação atual é %d ponto(s)\n", palavra.pontos);
 
             return true;
-        } else if (palavra.resposta.equals("dica")) {
-
-            System.out.println("De qual palavra deseja dica? [1] primeira ou [2] segunda");
-            int qualPalavraDica = global.scanner.nextInt();
-            palavra.dica(qualPalavraDica, palavra);
-
-            return false;
         } else if (palavra.resposta.equals("desisto")) {
             return true;
         } else {
