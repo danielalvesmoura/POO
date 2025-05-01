@@ -41,6 +41,10 @@ public class Tabuleiro {
         return tabuleiro;
     }
 
+    public int[] geraCoordenadasPalavra1 (int tamanhoTabuleiro, String[] escolhida, int orientacaoPalavra1) {
+
+    }
+
     public int[] geraPosicaoXPalavras(int tamanhoTabuleiro, String[] escolhida, int orientacaoPalavra) {
         int[] posicaoXPalavras = new int[2];
         for (int iPalavra = 0; iPalavra < escolhida.length; iPalavra++) {
