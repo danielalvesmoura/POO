@@ -5,7 +5,7 @@ public class Palavra {
     Global global = new Global();
 
     public int dificuldade = 4;
-    public String[] vetorPalavras = {"salve","casa","faca","gato","trilho"};
+    private String[] vetorPalavras = {"salve","casa","faca","gato","trilho"};
     public String[] palavrasEscolhidas = new String[2];
     public String resposta;
     public Boolean[] palavrasAcertadas = {false,false};
@@ -27,13 +27,21 @@ public class Palavra {
         }
     }
 
-
-    public void setDificuldade(int dificuldade) {
-        this.dificuldade = dificuldade;
+    public String[] getVetorPalavras() {
+        return vetorPalavras;
     }
 
+    Boolean pediuDica = false;
+    public void dica(int qualPalavraDica, Palavra palavra) {
+        pediuDica = true;
 
-    public int getDificuldade() {
-        return dificuldade;
+        char[] palavraArray = palavra.palavrasEscolhidas[qualPalavraDica-1].toCharArray();
+
+        System.out.printf("Primeira letra: %s\nÚltima letra: %s\n", palavraArray[0],palavraArray[palavraArray.length-1]);
+    }
+
+    int pontos = 0;
+    public void atualizaPontos() {
+        pontos++;
     }
 }
