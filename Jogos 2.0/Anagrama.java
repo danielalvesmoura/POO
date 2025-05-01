@@ -1,11 +1,21 @@
 import java.util.Scanner;
 
 public class Anagrama {
-    Global global = new Global();
-    String[] palavrasEmbaralhadas;
+    private Global global = new Global();
+    private String[] palavrasEmbaralhadas;
+    public Palavra palavra;
 
-    public void jogo(Palavra palavra, Pontuacao pontuacao, Dica dica) {
-        palavra.sorteiaPalavra(palavra.vetorPalavras);
+    public void setPalavra(Palavra palavra) {
+        this.palavra = palavra;
+    }
+
+    public Anagrama(Palavra palavra) {
+        setPalavra(palavra);
+    }
+
+    public void jogo() {
+
+        palavra.sorteiaPalavra(palavra.getVetorPalavras());
 
         palavrasEmbaralhadas = embaralhaPalavras(palavra.palavrasEscolhidas);
 
@@ -14,7 +24,7 @@ public class Anagrama {
 
         palavra.palavraReset();
 
-        tentativa(palavra, pontuacao, dica);
+        tentativa();
 
     }
 
@@ -24,7 +34,7 @@ public class Anagrama {
             char[] palavraArray = palavrasEscolhidas[iPalavra].toCharArray();
 
             for (int i = 0; i < palavraArray.length; i++) {
-                int posicaoAleatoria = global.inteiroAleatorio(0, palavraArray.length);
+                int posicaoAleatoria = Global.inteiroAleatorio(0, palavraArray.length);
 
                 char aux = palavraArray[i];
                 palavraArray[i] = palavraArray[posicaoAleatoria];
@@ -38,7 +48,7 @@ public class Anagrama {
         return novasPalavras;
     }
 
-    private void tentativa(Palavra palavra, Pontuacao pontuacao, Dica dica) {
+    private void tentativa() {
         while (palavra.acertouQuantas != 2) {
             System.out.println("Qual deseja acertar? [1] primeira ou [2] segunda");
             int qualPalavra = global.scanner.nextInt();
@@ -48,23 +58,29 @@ public class Anagrama {
                 global.scanner = new Scanner(System.in);
                 palavra.resposta = global.scanner.nextLine();
 
-                palavra.palavrasAcertadas[qualPalavra-1] = checaResposta(qualPalavra, pontuacao, palavra, dica);
+                palavra.palavrasAcertadas[qualPalavra-1] = checaResposta(qualPalavra);
             }
         }
     }
 
-    private Boolean checaResposta(int qualPalavra, Pontuacao pontuacao, Palavra palavra, Dica dica) {
+    private Boolean checaResposta(int qualPalavra) {
+
         if (palavra.resposta.equals(palavra.palavrasEscolhidas[qualPalavra-1])) {
+
             palavra.acertouQuantas++;
+
             System.out.println("\nVocê acertou!");
             System.out.println("Você ganhou 1 ponto!\n");
-            pontuacao.atualizaPontos();
-            System.out.printf("Sua pontuação atual é %d ponto(s)\n", pontuacao.pontos);
+            palavra.atualizaPontos();
+            System.out.printf("Sua pontuação atual é %d ponto(s)\n", palavra.pontos);
+
             return true;
         } else if (palavra.resposta.equals("dica")) {
+
             System.out.println("De qual palavra deseja dica? [1] primeira ou [2] segunda");
             int qualPalavraDica = global.scanner.nextInt();
-            dica.dica(qualPalavraDica, palavra);
+            palavra.dica(qualPalavraDica, palavra);
+
             return false;
         } else if (palavra.resposta.equals("desisto")) {
             return true;
@@ -73,5 +89,4 @@ public class Anagrama {
             return false;
         }
     }
-
 }
