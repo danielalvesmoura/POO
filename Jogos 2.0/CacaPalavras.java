@@ -1,20 +1,18 @@
 import java.util.Scanner;
 
 public class CacaPalavras {
-    Palavra palavra;
     Global global = new Global();
     Tabuleiro tabuleiro = new Tabuleiro();
     String[] palavrasEscolhidas;
     int tamanhoTabuleiro;
 
+    Palavra palavra;
     public void setPalavra(Palavra palavra) {
         this.palavra = palavra;
     }
-
     public void setPalavrasEscolhidas(String[] palavrasEscolhidas) {
         this.palavrasEscolhidas = palavrasEscolhidas;
     }
-
     public void setTamanhoTabuleiro(int tamanhoTabuleiro) {
         this.tamanhoTabuleiro = tamanhoTabuleiro;
     }
@@ -30,8 +28,11 @@ public class CacaPalavras {
 
         char[][] tabuleiro1 = tabuleiro.gerarTabuleiro(tamanhoTabuleiro);
 
-        int orientacaoPalavra = global.inteiroAleatorio(0, 2);  // Decide se a palavra estará na vertical ou horizontal
+        int orientacaoPalavra1 = global.inteiroAleatorio(0, 2);
+        int orientacaoPalavra2 = global.inteiroAleatorio(0, 2);// Decide se a palavra estará na vertical ou horizontal
 
+        int[] coordenadasPalavra1 = tabuleiro.geraPosicaoYPalavras(tamanhoTabuleiro, palavrasEscolhidas, orientacaoPalavra1);
+        
         int[] posicaoYPalavras = tabuleiro.geraPosicaoYPalavras(tamanhoTabuleiro, palavrasEscolhidas, orientacaoPalavra);
         int[] posicaoXPalavras = tabuleiro.geraPosicaoXPalavras(tamanhoTabuleiro, palavrasEscolhidas, orientacaoPalavra);
 
