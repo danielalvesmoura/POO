@@ -46,7 +46,7 @@ public class CacaPalavras {
     private void tentativa(Palavra palavra) {
         palavra.acertouQuantas = 0;
         while (palavra.acertouQuantas != 2) {
-            System.out.println("Digiter a palavra que encontrar");
+            System.out.println("Digiter a palavra que encontrar ou digite dica");
 
             global.scanner = new Scanner(System.in);
             palavra.resposta = global.scanner.nextLine();
