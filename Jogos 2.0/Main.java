@@ -4,9 +4,6 @@ public class Main {
 
     private Global global = new Global();
     public Palavra palavra = new Palavra();
-    public Pontuacao pontuacao = new Pontuacao();
-    public Dica dica = new Dica();
-
     private Boolean jogando = true;
 
     public static void main(String[] args) {
@@ -25,13 +22,13 @@ public class Main {
         int respostaAcao = global.scanner.nextInt();
 
         if (respostaAcao == 1) {
-            Anagrama anagrama = new Anagrama();
-            anagrama.jogo(palavra, pontuacao, dica);
+            Anagrama anagrama = new Anagrama(palavra);
+            anagrama.jogo();
         }  else if (respostaAcao == 2) {
-            CacaPalavras cacaPalavras = new CacaPalavras();
-            cacaPalavras.jogo(palavra, pontuacao, dica);
+            CacaPalavras cacaPalavras = new CacaPalavras(palavra);
+            cacaPalavras.jogo();
         }  else if (respostaAcao == 3) {
-            mudarDificuldade(palavra);
+            mudarDificuldade();
         } else if (respostaAcao == 4) {
             jogando = false;
         }
@@ -39,15 +36,13 @@ public class Main {
 
     }
 
-    private void mudarDificuldade(Palavra palavra) {
+    private void mudarDificuldade() {
 
         System.out.println("Digite a quantidade desejada de letras [4-6]:");
 
         global.scanner = new Scanner(System.in);
-        palavra.setDificuldade(global.scanner.nextInt());
+        palavra.dificuldade = global.scanner.nextInt();
 
     }
-
-
 
 }
